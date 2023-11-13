@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using PlanetExploration.PlanetExploration.Core.Models;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
-namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries
+namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries.GetAllHumanCaptains
 {
     public class GetAllHumanCaptainsQueryHandler : IRequestHandler<GetAllHumanCaptainsQuery, IEnumerable<Core.Models.HumanCaptain>>
     {
