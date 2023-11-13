@@ -1,12 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "MQJMAwKTn0EejyBgIWmw38CwoFZXFVN0vPS+Hq+MyTQkgdlwGPG3hxwQWz12brjbCQp4e5yLTT/aC6kZrNr54A==",
+  "dgSpecHash": "ov1/CmOQiZ42kDTHTOuyaNnzuX9EJ3mM7kKdbtwhSIfMr2W/yuVeYGzpRoAZm0KXPlvAfruVvT2oYXmWEiUzuA==",
   "success": true,
   "projectFilePath": "C:\\Projects\\PlanetExploration\\PlanetExploration\\PlanetExploration.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\scrasov\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\scrasov\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
     "C:\\Users\\scrasov\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\scrasov\\.nuget\\packages\\mediatr\\12.1.1\\mediatr.12.1.1.nupkg.sha512",
+    "C:\\Users\\scrasov\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\scrasov\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\scrasov\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\scrasov\\.nuget\\packages\\microsoft.data.sqlclient\\5.1.1\\microsoft.data.sqlclient.5.1.1.nupkg.sha512",
