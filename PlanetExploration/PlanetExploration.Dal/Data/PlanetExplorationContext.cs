@@ -19,13 +19,13 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
                 .EnableSensitiveDataLogging();
         }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<HumanCaptain>()
-                .HasOne(hc => hc.Team)
-                .WithOne(t => t.HumanCaptain)
-                .HasForeignKey<HumanCaptain>(hc => hc.TeamId);
-        }
+        //protected override void OnModelCreating(ModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Team>()
+        //        .HasOne(hc => hc.HumanCaptain)
+        //        .WithOne(t => t.Team)
+        //        .HasForeignKey<HumanCaptain>(hc => hc.TeamId);
+        //}
 
     }
 }
