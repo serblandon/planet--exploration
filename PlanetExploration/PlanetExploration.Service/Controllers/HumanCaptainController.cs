@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs;
 using PlanetExploration.PlanetExploration.Core.Models;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHumanCaptain;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries;
@@ -46,7 +47,7 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(HumanCaptain), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> AddBingQueryAsync([FromBody] HumanCaptain humanCaptain)
+        public async Task<ActionResult> AddHumanCaptainAsync([FromBody] AddHumanCaptainDto humanCaptain)
         {
             var humanCaptainEntity = await _mediator.Send(new AddHumanCaptainCommand() { HumanCaptain = humanCaptain });
             return Ok(humanCaptainEntity);

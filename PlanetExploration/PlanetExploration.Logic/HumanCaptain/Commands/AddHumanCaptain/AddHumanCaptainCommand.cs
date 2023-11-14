@@ -1,9 +1,10 @@
 ﻿using MediatR;
+using PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs;
 
 namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHumanCaptain
 {
     public class AddHumanCaptainCommand : IRequest<Core.Models.HumanCaptain>
     {
-        public Core.Models.HumanCaptain HumanCaptain { get; set; }
+        public AddHumanCaptainDto HumanCaptain { get; set; }
     }
 }

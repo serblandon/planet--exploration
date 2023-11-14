@@ -20,10 +20,12 @@ namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHum
                 throw new Exception($"Human Captain with name {request.HumanCaptain.Name} already exists.");
             }
 
-            await _planetExplorationContext.HumanCaptains.AddAsync(request.HumanCaptain, cancellationToken);
+            Core.Models.HumanCaptain entity = request.HumanCaptain;
+
+            await _planetExplorationContext.HumanCaptains.AddAsync(entity, cancellationToken);
             await _planetExplorationContext.SaveChangesAsync(cancellationToken);
 
-            return request.HumanCaptain;
+            return entity;
         }
 
     }
