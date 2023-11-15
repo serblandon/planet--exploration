@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs;
-using PlanetExploration.PlanetExploration.Core.Models;
 
 namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.UpdateHumanCaptain
 {

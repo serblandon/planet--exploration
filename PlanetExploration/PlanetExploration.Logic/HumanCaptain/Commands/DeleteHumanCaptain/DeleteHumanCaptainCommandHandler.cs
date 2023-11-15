@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Exceptions;
 using PlanetExploration.Infrastructure.Exceptions;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
