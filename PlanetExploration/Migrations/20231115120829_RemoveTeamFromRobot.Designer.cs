@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
@@ -11,9 +12,11 @@ using PlanetExploration.PlanetExploration.Dal.Data;
 namespace PlanetExploration.Migrations
 {
     [DbContext(typeof(PlanetExplorationContext))]
-    partial class PlanetExplorationContextModelSnapshot : ModelSnapshot
+    [Migration("20231115120829_RemoveTeamFromRobot")]
+    partial class RemoveTeamFromRobot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
