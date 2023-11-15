@@ -2,11 +2,11 @@
 
 namespace PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs
 {
-    public class AddHumanCaptainDto
+    public class HumanCaptainDto
     {
         public string Name { get; set; }
 
-        public static implicit operator HumanCaptain(AddHumanCaptainDto entity)
+        public static implicit operator HumanCaptain(HumanCaptainDto entity)
         {
             return new()
             {

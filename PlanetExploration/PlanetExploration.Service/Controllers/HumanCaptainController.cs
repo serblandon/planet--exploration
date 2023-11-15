@@ -4,6 +4,7 @@ using PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs;
 using PlanetExploration.PlanetExploration.Core.Models;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHumanCaptain;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.DeleteHumanCaptain;
+using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.UpdateHumanCaptain;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries.GetAllHumanCaptains;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries.GetHumanCaptainsById;
@@ -51,10 +52,20 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
 #region Add
         [HttpPost]
         [ProducesResponseType(typeof(HumanCaptain), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> AddHumanCaptainAsync([FromBody] AddHumanCaptainDto humanCaptain)
+        public async Task<ActionResult> AddHumanCaptainAsync([FromBody] HumanCaptainDto humanCaptain)
         {
             var humanCaptainEntity = await _mediator.Send(new AddHumanCaptainCommand() { HumanCaptain = humanCaptain });
             return Ok(humanCaptainEntity);
+        }
+        #endregion
+
+#region Update
+        [HttpPut("{humanCaptainId:int}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult> UpdateHumanCaptainAsync(int humanCaptainId, [FromBody] HumanCaptainDto humanCaptain)
+        {
+            await _mediator.Send(new UpdateHumanCaptainCommand() { Id = humanCaptainId, HumanCaptain = humanCaptain });
+            return Ok();
         }
 #endregion
 
@@ -63,7 +74,7 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult> DeleteHumanCaptainAsync(int humanCaptainId)
         {
-            var humanCaptainEntity = await _mediator.Send(new DeleteHumanCaptainCommand() { Id = humanCaptainId });
+            await _mediator.Send(new DeleteHumanCaptainCommand() { Id = humanCaptainId });
             return Ok();
         }
 #endregion

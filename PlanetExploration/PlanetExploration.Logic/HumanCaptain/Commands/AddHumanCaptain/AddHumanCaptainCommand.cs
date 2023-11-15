@@ -5,6 +5,6 @@ namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHum
 {
     public class AddHumanCaptainCommand : IRequest<Core.Models.HumanCaptain>
     {
-        public AddHumanCaptainDto HumanCaptain { get; set; }
+        public HumanCaptainDto HumanCaptain { get; set; }
     }
 }
