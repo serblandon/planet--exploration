@@ -9,7 +9,6 @@ using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries.GetAllHumanCaptains;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries.GetHumanCaptainsById;
 using System.Net;
-using System.Security.Claims;
 
 namespace PlanetExploration.PlanetExploration.Service.Controllers
 {
