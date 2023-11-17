@@ -1,8 +1,8 @@
-import { Planet } from "./planet";
+import { IPlanet } from "./planet";
 
-export interface HumanCaptain {
+export interface IHumanCaptain {
     id: number;
     name: string;
     planetId: number;
-    planet?: Planet;
+    planet?: IPlanet;
 }

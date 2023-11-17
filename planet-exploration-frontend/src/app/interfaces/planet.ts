@@ -1,11 +1,11 @@
-import { HumanCaptain } from "./human-captain";
-import { Robot } from "./robot";
+import { IHumanCaptain } from "./human-captain";
+import { IRobot } from "./robot";
 
-export interface Planet {
+export interface IPlanet {
     id: number;
     name: string;
     description?: string;
     status: string;
-    humanCaptain: HumanCaptain;
-    robots: Robot[];
+    humanCaptain: IHumanCaptain;
+    robots: IRobot[];
 }
