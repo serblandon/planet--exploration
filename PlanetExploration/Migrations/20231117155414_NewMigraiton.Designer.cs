@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
@@ -10,9 +11,11 @@ using PlanetExploration.PlanetExploration.Dal.Data;
 namespace PlanetExploration.Migrations
 {
     [DbContext(typeof(PlanetExplorationContext))]
-    partial class PlanetExplorationContextModelSnapshot : ModelSnapshot
+    [Migration("20231117155414_NewMigraiton")]
+    partial class NewMigraiton
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,15 +36,9 @@ namespace PlanetExploration.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("PlanetId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.HasIndex("PlanetId")
                         .IsUnique();
 
                     b.ToTable("HumanCaptains");
@@ -58,6 +55,9 @@ namespace PlanetExploration.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("HumanCaptainId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -69,6 +69,9 @@ namespace PlanetExploration.Migrations
                         .HasDefaultValue("En Route");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("HumanCaptainId")
+                        .IsUnique();
 
                     b.ToTable("Planets");
                 });
@@ -98,15 +101,15 @@ namespace PlanetExploration.Migrations
                     b.ToTable("Robots");
                 });
 
-            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", b =>
+            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Planet", b =>
                 {
-                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Planet", "Planet")
-                        .WithOne("HumanCaptain")
-                        .HasForeignKey("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", "PlanetId")
+                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", "HumanCaptain")
+                        .WithOne("Planet")
+                        .HasForeignKey("PlanetExploration.PlanetExploration.Core.Models.Planet", "HumanCaptainId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Planet");
+                    b.Navigation("HumanCaptain");
                 });
 
             modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Robot", b =>
@@ -120,11 +123,14 @@ namespace PlanetExploration.Migrations
                     b.Navigation("Planet");
                 });
 
+            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", b =>
+                {
+                    b.Navigation("Planet")
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Planet", b =>
                 {
-                    b.Navigation("HumanCaptain")
-                        .IsRequired();
-
                     b.Navigation("Robots");
                 });
 #pragma warning restore 612, 618
