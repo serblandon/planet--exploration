@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PlanetExploration.Infrastructure.Exceptions;
 using PlanetExploration.PlanetExploration.Core.Models;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
@@ -17,7 +18,7 @@ namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHum
             var alreadyInDataBase = await _planetExplorationContext.HumanCaptains.FirstOrDefaultAsync(u => u.Name == request.HumanCaptain.Name, cancellationToken);
             if (alreadyInDataBase != null)
             {
-                throw new Exception($"Human Captain with name {request.HumanCaptain.Name} already exists.");
+                throw new ApiException($"Human Captain with name {request.HumanCaptain.Name} already exists.");
             }
 
             Core.Models.HumanCaptain entity = request.HumanCaptain;

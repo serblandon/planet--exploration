@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using PlanetExploration.Infrastructure.Exceptions;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
 namespace PlanetExploration.PlanetExploration.Logic.Robot.Commands.AddRobot
@@ -16,7 +17,7 @@ namespace PlanetExploration.PlanetExploration.Logic.Robot.Commands.AddRobot
             var alreadyInDataBase = await _planetExplorationContext.Robots.FirstOrDefaultAsync(u => u.Name == request.Robot.Name, cancellationToken);
             if (alreadyInDataBase != null)
             {
-                throw new Exception($"Robot with name {request.Robot.Name} already exists.");
+                throw new ApiException($"Robot with name {request.Robot.Name} already exists.");
             }
 
             Core.Models.Robot entity = request.Robot;
