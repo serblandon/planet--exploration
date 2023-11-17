@@ -15,7 +15,7 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
                 .EnableSensitiveDataLogging();
         }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -41,9 +41,9 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
                 .HasForeignKey(r => r.PlanetId);
 
             modelBuilder.Entity<HumanCaptain>()
-                .HasOne(r => r.Planet)
+                .HasOne(p => p.Planet)
                 .WithOne(h => h.HumanCaptain)
-                .HasForeignKey<HumanCaptain>(r => r.PlanetId);
+                .HasForeignKey<HumanCaptain>(h => h.PlanetId);
 
             modelBuilder.Entity<Planet>()
                 .Property(p => p.Status)
