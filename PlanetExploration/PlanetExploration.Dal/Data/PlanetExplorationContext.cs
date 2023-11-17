@@ -8,7 +8,6 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
         public DbSet<HumanCaptain> HumanCaptains { get; set; } = null;
         public DbSet<Planet> Planets { get; set; } = null;
         public DbSet<Robot> Robots { get; set; } = null;
-        public DbSet<Team> Teams { get; set; } = null;
 
         public PlanetExplorationContext(DbContextOptions options) : base(options)
         {
@@ -16,7 +15,7 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
                 .EnableSensitiveDataLogging();
         }
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,6 +34,20 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
             modelBuilder.Entity<Robot>()
                 .HasIndex(r => r.Name)
                 .IsUnique();
+
+            modelBuilder.Entity<Robot>()
+                .HasOne(p => p.Planet)
+                .WithMany(r => r.Robots)
+                .HasForeignKey(r => r.PlanetId);
+
+            modelBuilder.Entity<HumanCaptain>()
+                .HasOne(r => r.Planet)
+                .WithOne(h => h.HumanCaptain)
+                .HasForeignKey<HumanCaptain>(r => r.PlanetId);
+
+            modelBuilder.Entity<Planet>()
+                .Property(p => p.Status)
+                .HasDefaultValue("En Route");
         }
 
     }
