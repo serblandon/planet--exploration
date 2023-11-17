@@ -5,6 +5,6 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Commands.AddPlanet
 {
     public class AddPlanetCommand : IRequest<Core.Models.Planet>
     {
-        public PlanetDto Planet { get; set; }
+        public AddPlanetDto Planet { get; set; }
     }
 }
