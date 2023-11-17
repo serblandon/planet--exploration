@@ -26,6 +26,16 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
         //        .WithOne(t => t.Team)
         //        .HasForeignKey<HumanCaptain>(hc => hc.TeamId);
         //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<HumanCaptain>()
+                .HasIndex(h => h.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Robot>()
+                .HasIndex(r => r.Name)
+                .IsUnique();
+        }
 
     }
 }
