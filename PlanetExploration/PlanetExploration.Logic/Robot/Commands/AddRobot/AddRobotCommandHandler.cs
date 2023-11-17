@@ -13,7 +13,7 @@ namespace PlanetExploration.PlanetExploration.Logic.Robot.Commands.AddRobot
         }
         public async Task<Core.Models.Robot> Handle(AddRobotCommand request, CancellationToken cancellationToken)
         {
-            var alreadyInDataBase = await _planetExplorationContext.Robots.FirstOrDefaultAsync(u => u.Name.ToLower() == request.Robot.Name.ToLower(), cancellationToken);
+            var alreadyInDataBase = await _planetExplorationContext.Robots.FirstOrDefaultAsync(u => u.Name == request.Robot.Name, cancellationToken);
             if (alreadyInDataBase != null)
             {
                 throw new Exception($"Robot with name {request.Robot.Name} already exists.");

@@ -14,7 +14,7 @@ namespace PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHum
         }
         public async Task<Core.Models.HumanCaptain> Handle(AddHumanCaptainCommand request, CancellationToken cancellationToken)
         {
-            var alreadyInDataBase = await _planetExplorationContext.HumanCaptains.FirstOrDefaultAsync(u => u.Name.ToLower() == request.HumanCaptain.Name.ToLower(), cancellationToken);
+            var alreadyInDataBase = await _planetExplorationContext.HumanCaptains.FirstOrDefaultAsync(u => u.Name == request.HumanCaptain.Name, cancellationToken);
             if (alreadyInDataBase != null)
             {
                 throw new Exception($"Human Captain with name {request.HumanCaptain.Name} already exists.");
