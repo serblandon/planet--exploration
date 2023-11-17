@@ -2,11 +2,11 @@
 
 namespace PlanetExploration.PlanetExploration.Core.DTOs.PlanetDTOs
 {
-    public class PlanetDto
+    public class AddPlanetDto
     {
         public string Name { get; set; }
 
-        public static implicit operator Planet(PlanetDto entity)
+        public static implicit operator Planet(AddPlanetDto entity)
         {
             return new()
             {
