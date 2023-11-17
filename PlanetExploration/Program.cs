@@ -17,7 +17,7 @@ builder.Services.AddMediatR(typeof(Program));
 
 builder.Services.AddDbContext<PlanetExplorationContext>(options =>
         options.UseSqlServer(builder.Configuration
-        .GetConnectionString(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDatabase;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
+        .GetConnectionString(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")));
 
 var app = builder.Build();
 

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
@@ -10,9 +11,11 @@ using PlanetExploration.PlanetExploration.Dal.Data;
 namespace PlanetExploration.Migrations
 {
     [DbContext(typeof(PlanetExplorationContext))]
-    partial class PlanetExplorationContextModelSnapshot : ModelSnapshot
+    [Migration("20231117134740_Robot")]
+    partial class Robot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,15 +36,9 @@ namespace PlanetExploration.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("PlanetId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.HasIndex("PlanetId")
                         .IsUnique();
 
                     b.ToTable("HumanCaptains");
@@ -58,20 +55,20 @@ namespace PlanetExploration.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("HumanCaptainId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(max)")
-                        .HasDefaultValue("En Route");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TeamId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Planets");
                 });
@@ -88,7 +85,7 @@ namespace PlanetExploration.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("PlanetId")
+                    b.Property<int>("TeamId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -96,37 +93,65 @@ namespace PlanetExploration.Migrations
                     b.HasIndex("Name")
                         .IsUnique();
 
-                    b.HasIndex("PlanetId");
+                    b.HasIndex("TeamId");
 
                     b.ToTable("Robots");
                 });
 
-            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", b =>
+            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Team", b =>
                 {
-                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Planet", "Planet")
-                        .WithOne("HumanCaptain")
-                        .HasForeignKey("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", "PlanetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Navigation("Planet");
-                });
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Robot", b =>
-                {
-                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Planet", "Planet")
-                        .WithMany("Robots")
-                        .HasForeignKey("PlanetId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("HumanCaptainId")
+                        .HasColumnType("int");
 
-                    b.Navigation("Planet");
+                    b.HasKey("Id");
+
+                    b.HasIndex("HumanCaptainId");
+
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Planet", b =>
                 {
-                    b.Navigation("HumanCaptain")
+                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Team", "Team")
+                        .WithMany("Planets")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Robot", b =>
+                {
+                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Team", "Team")
+                        .WithMany("Robots")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Team", b =>
+                {
+                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", "HumanCaptain")
+                        .WithMany()
+                        .HasForeignKey("HumanCaptainId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HumanCaptain");
+                });
+
+            modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Team", b =>
+                {
+                    b.Navigation("Planets");
 
                     b.Navigation("Robots");
                 });
