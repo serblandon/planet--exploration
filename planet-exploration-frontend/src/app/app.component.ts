@@ -14,7 +14,7 @@ export class AppComponent{
   constructor(private planetService: PlanetService) {}
 
   ngOnInit(): void {
-    this.planetService.getAllPlanets().subscribe({
+    this.planetService.getAll().subscribe({
       next: (data: IPlanet[]) => {
         this.planets = data;
       },
