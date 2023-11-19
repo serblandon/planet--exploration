@@ -30,10 +30,6 @@ export class GenericRestApi<T> {
       }
 
     private getUrlForModel(): string {
-        let controller = this.controller;
-        if (controller) {
-          controller = `/${controller}`;
-        }
-        return controller;
+        return `/${this.controller}`;
       }
 }
