@@ -1,0 +1,12 @@
+<div class="planet-card" *ngIf="planet">
+  <div class="planet-header">
+    <h2>{{ planet.name }}</h2>
+    <span class="planet-status" [ngClass]="{ 'ok': planet.status === 'OK', 'not-ok': planet.status !== 'OK' }">{{ planet.status }}</span>
+  </div>
+  <p class="planet-description">{{ planet.description || 'No description available' }}</p>
+  <div class="planet-footer">
+    <p>by captain {{ planet.humanCaptain.name }}</p>
+    <p>Robots: <span *ngIf="planet.robots.length > 0; else noRobots">{{ planet.robots }}</span></p>
+    <ng-template #noRobots>No robots assigned</ng-template>
+  </div>
+</div>
