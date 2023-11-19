@@ -21,7 +21,7 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         }
 
         #region Get
-        [HttpGet("[action]")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<Planet>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllPlanets()
         {
