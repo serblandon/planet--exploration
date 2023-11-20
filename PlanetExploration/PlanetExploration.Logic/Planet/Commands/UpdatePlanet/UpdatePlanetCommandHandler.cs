@@ -37,7 +37,7 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Commands.UpdatePlanet
                 planet.Description = entity.Description;
             }
 
-        _planetExplorationContext.Planets.Update(planet);
+            _planetExplorationContext.Planets.Update(planet);
             await _planetExplorationContext.SaveChangesAsync(cancellationToken);
 
             return Unit.Value;
