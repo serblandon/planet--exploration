@@ -7,7 +7,7 @@ namespace PlanetExploration.PlanetExploration.Core.DTOs.PlanetDTOs
     {
         public string Description { get; set; }
         public PlanetStatus Status { get; set; }
-        public HumanCaptainDto HumanCaptain { get; set; }
+        public HumanCaptainPlanetDto HumanCaptain { get; set; }
 
         public static implicit operator Planet(UpdatePlanetDto entity)
         {
