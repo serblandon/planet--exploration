@@ -1,20 +1,21 @@
-﻿using PlanetExploration.PlanetExploration.Core.Models;
+﻿using PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs;
+using PlanetExploration.PlanetExploration.Core.Models;
 
 namespace PlanetExploration.PlanetExploration.Core.DTOs.PlanetDTOs
 {
     public class UpdatePlanetDto
     {
-        public string Name { get; set; }
         public string Description { get; set; }
-        public string Status { get; set; }
+        public PlanetStatus Status { get; set; }
+        public HumanCaptainDto HumanCaptain { get; set; }
 
         public static implicit operator Planet(UpdatePlanetDto entity)
         {
             return new()
             {
-                Name = entity.Name,
                 Description = entity.Description,
                 Status = entity.Status,
+                HumanCaptain = entity.HumanCaptain,
             };
         }
     }
