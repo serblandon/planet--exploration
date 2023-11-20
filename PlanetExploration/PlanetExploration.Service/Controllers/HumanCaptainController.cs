@@ -50,7 +50,7 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
 #region Add
         [HttpPost]
         [ProducesResponseType(typeof(HumanCaptain), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> AddHumanCaptainAsync([FromBody] HumanCaptainDto humanCaptain)
+        public async Task<ActionResult> AddHumanCaptainAsync([FromBody] HumanCaptainPlanetDto humanCaptain)
         {
             var humanCaptainEntity = await _mediator.Send(new AddHumanCaptainCommand() { HumanCaptain = humanCaptain });
             return Ok(humanCaptainEntity);
