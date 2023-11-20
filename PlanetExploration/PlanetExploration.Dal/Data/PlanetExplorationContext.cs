@@ -18,13 +18,6 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=PlanetExplorationDDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False")
                 .EnableSensitiveDataLogging();
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Team>()
-        //        .HasOne(hc => hc.HumanCaptain)
-        //        .WithOne(t => t.Team)
-        //        .HasForeignKey<HumanCaptain>(hc => hc.TeamId);
-        //}
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<HumanCaptain>()
@@ -36,18 +29,23 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
                 .IsUnique();
 
             modelBuilder.Entity<Robot>()
-                .HasOne(p => p.Planet)
+                .HasOne<Planet>()
                 .WithMany(r => r.Robots)
                 .HasForeignKey(r => r.PlanetId);
 
             modelBuilder.Entity<HumanCaptain>()
-                .HasOne(p => p.Planet)
+                .HasOne<Planet>()
                 .WithOne(h => h.HumanCaptain)
                 .HasForeignKey<HumanCaptain>(h => h.PlanetId);
 
             modelBuilder.Entity<Planet>()
-                .Property(p => p.Status)
-                .HasDefaultValue("En Route");
+                .Property(p => p.Description)
+                .HasDefaultValue("This planet has not been visited yet.");
+
+            modelBuilder
+                .Entity<Planet>()
+                .Property(e => e.Status)
+                .HasConversion<string>();
         }
 
     }
