@@ -22,7 +22,7 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         }
 
 #region Get
-        [HttpGet("[action]")]
+        [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<HumanCaptain>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAllHumanCaptains()
         {
