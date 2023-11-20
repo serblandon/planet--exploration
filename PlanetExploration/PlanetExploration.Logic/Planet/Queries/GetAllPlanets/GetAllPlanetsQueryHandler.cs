@@ -13,7 +13,9 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Queries.GetAllPlanets
         }
         public async Task<IEnumerable<Core.Models.Planet>> Handle(GetAllPlanetsQuery request, CancellationToken cancellationToken)
         {
-            return await _planetExplorationContext.Planets.ToListAsync(cancellationToken);
+            return await _planetExplorationContext.Planets
+                .Include(p => p.HumanCaptain)
+                .ToListAsync(cancellationToken);
         }
     }
 }
