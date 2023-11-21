@@ -49,7 +49,7 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         #region Add
         [HttpPost]
         [ProducesResponseType(typeof(Robot), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult> AddRobotAsync([FromBody] RobotDto robot)
+        public async Task<ActionResult> AddRobotAsync([FromBody] AddRobotDto robot)
         {
             var robotEntity = await _mediator.Send(new AddRobotCommand() { Robot = robot });
             return Ok(robotEntity);

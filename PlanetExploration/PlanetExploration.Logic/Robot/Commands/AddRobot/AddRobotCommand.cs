@@ -5,6 +5,6 @@ namespace PlanetExploration.PlanetExploration.Logic.Robot.Commands.AddRobot
 {
     public class AddRobotCommand : IRequest<Core.Models.Robot>
     {
-        public RobotDto Robot { get; set; }
+        public AddRobotDto Robot { get; set; }
     }
 }
