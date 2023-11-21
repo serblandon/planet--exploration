@@ -15,6 +15,7 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Queries.GetAllPlanets
         {
             return await _planetExplorationContext.Planets
                 .Include(p => p.HumanCaptain)
+                .Include(r => r.Robots)
                 .ToListAsync(cancellationToken);
         }
     }
