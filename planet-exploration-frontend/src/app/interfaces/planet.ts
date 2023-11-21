@@ -5,7 +5,7 @@ export interface IPlanet {
     id: number;
     name: string;
     description?: string;
-    status: string;
+    status: number;
     humanCaptain: IHumanCaptain;
     robots: IRobot[];
 }
