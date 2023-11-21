@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PlanetExploration.PlanetExploration.Dal.Data;
 
@@ -11,9 +12,11 @@ using PlanetExploration.PlanetExploration.Dal.Data;
 namespace PlanetExploration.Migrations
 {
     [DbContext(typeof(PlanetExplorationContext))]
-    partial class PlanetExplorationContextModelSnapshot : ModelSnapshot
+    [Migration("20231120183213_Nullabel2")]
+    partial class Nullabel2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,6 +91,7 @@ namespace PlanetExploration.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("PlanetId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -102,16 +106,22 @@ namespace PlanetExploration.Migrations
 
             modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", b =>
                 {
-                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Planet", null)
+                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Planet", "Planet")
                         .WithOne("HumanCaptain")
                         .HasForeignKey("PlanetExploration.PlanetExploration.Core.Models.HumanCaptain", "PlanetId");
+
+                    b.Navigation("Planet");
                 });
 
             modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Robot", b =>
                 {
-                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Planet", null)
+                    b.HasOne("PlanetExploration.PlanetExploration.Core.Models.Planet", "Planet")
                         .WithMany("Robots")
-                        .HasForeignKey("PlanetId");
+                        .HasForeignKey("PlanetId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Planet");
                 });
 
             modelBuilder.Entity("PlanetExploration.PlanetExploration.Core.Models.Planet", b =>
