@@ -1,3 +1,10 @@
-<div *ngFor="let planet of planets">
-  <app-planet [planet]="planet"></app-planet>
+<div class="page">
+  <header class="app-header">
+    Planet Exploration
+  </header>
+  <div class="main-content">
+    <div *ngFor="let planet of planets">
+      <app-planet [planet]="planet"></app-planet>
+    </div>
+  </div>
 </div>
