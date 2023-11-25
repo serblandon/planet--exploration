@@ -14,4 +14,8 @@ export class PlanetComponent{
   public planet!: IPlanet;
 
   constructor(private planetService: PlanetService) { }
+
+  visitPlanet(planet: IPlanet): void {
+
+  }
 }

@@ -20,7 +20,7 @@
         </ng-container>
       </p>
     </div> 
-    <button *ngIf="planet.status === 0">
+    <button *ngIf="planet.status === 0" (click)="visitPlanet(planet)">
       Visit Planet
     </button>
   </div>
