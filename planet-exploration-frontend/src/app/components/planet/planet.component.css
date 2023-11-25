@@ -1,0 +1,55 @@
+.planet-card {
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .planet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .planet-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .OK {
+    background-color: #4caf50;
+  }
+  
+  .NOTOK {
+    background-color: #f44336;
+  }
+
+  .ENROUTE {
+    background-color: goldenrod;
+  }
+  
+  .planet-description {
+    font-style: italic;
+  }
+  
+  .planet-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .planet-footer button {
+    padding: 10px 20px;
+    background-color: #800020;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .planet-footer button:hover {
+    background-color: #4d0013; 
+  }
