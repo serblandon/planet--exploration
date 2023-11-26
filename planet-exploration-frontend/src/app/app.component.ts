@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IPlanet } from './interfaces/planet';
 import { PlanetService } from './services/planet.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +13,21 @@ export class AppComponent{
 
   planets: IPlanet[] = [];
 
-  constructor(private planetService: PlanetService) {}
+  constructor(
+    private planetService: PlanetService,
+    private spinner: NgxSpinnerService
+    ) {}
 
   ngOnInit(): void {
-    this.planetService.getAll().subscribe({
+    this.spinner.show("spinnerDetails");
+    this.planetService.getAll()
+    .pipe(
+      finalize(() => this.spinner.hide("spinnerDetails"))
+    )
+    .subscribe({
       next: (data: IPlanet[]) => {
         this.planets = data;
+        this.spinner.hide("spinnerDetails");
       },
       error: (error) => {
         console.error('Error fetching planets:', error);
