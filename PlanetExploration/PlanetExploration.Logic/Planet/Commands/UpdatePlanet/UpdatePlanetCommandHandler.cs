@@ -55,15 +55,13 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Commands.UpdatePlanet
                 }
             }
 
-            Core.Models.Planet entity = request.Planet;
-
             if (!string.IsNullOrEmpty(request.Planet.Status.ToString()))
             {
-                planet.Status = entity.Status;
+                planet.Status = request.Planet.Status;
             }
             if (!string.IsNullOrEmpty(request.Planet.Description))
             {
-                planet.Description = entity.Description;
+                planet.Description = request.Planet.Description;
             }
 
             foreach (var robot in robots)
@@ -71,8 +69,6 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Commands.UpdatePlanet
                 robot.PlanetId = planet.Id;
             }
             humanCaptain.PlanetId = planet.Id;
-            planet.HumanCaptain = humanCaptain;
-            planet.Robots = robots;
             
             _planetExplorationContext.Planets.Update(planet);
             await _planetExplorationContext.SaveChangesAsync(cancellationToken);

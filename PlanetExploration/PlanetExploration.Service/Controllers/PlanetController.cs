@@ -44,7 +44,7 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         #region Update
         [HttpPut("{planetId:int}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult> UpdatePlanetAsync(int planetId, [FromBody] UpdatePlanetDto planet)
+        public async Task<ActionResult> UpdatePlanetAsync(int planetId, [FromBody] Planet planet)
         {
             await _mediator.Send(new UpdatePlanetCommand() { Id = planetId, Planet = planet });
             return Ok();
