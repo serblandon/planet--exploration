@@ -1,27 +1,79 @@
 <div class="planet-card" *ngIf="planet">
+  <!-- Planet Header -->
   <div class="planet-header">
     <h2>{{ planet.name }}</h2>
     <span class="planet-status" 
-    [ngClass]="{'OK': planet.status === 1, 'NOTOK': planet.status === 2, 'ENROUTE': planet.status === 0}">
+         [ngClass]="{
+           'OK': planet.status === 1, 
+           'NOTOK': planet.status === 2, 
+           'ENROUTE': planet.status === 0
+         }">
       {{ planet.status === 1 ? 'OK' : (planet.status === 2 ? '!OK' : (planet.status === 0 ? 'EnRoute' : 'Unknown')) }}
     </span>
   </div>
-  <p class="planet-description">{{ planet.description }}</p>
-  <div class="planet-footer">
+
+  <!-- Planet Description -->
+  <p class="planet-description" *ngIf="!editMode">{{ planet.description }}</p>
+
+  <!-- Entity Details -->
+  <div class="planet-footer" *ngIf="!editMode">
     <div class="entities">
       <p *ngIf="planet.humanCaptain && planet.humanCaptain.name">
-        <strong>by captain: </strong>{{ planet.humanCaptain.name }}
+        <strong>by captain:</strong> {{ planet.humanCaptain.name }}
       </p>
-
       <p *ngIf="planet.robots && planet.robots.length > 0">
-        <strong>Robots: </strong>
-        <ng-container *ngFor="let robot of planet.robots; let last = last">
-          {{ robot.name }}<span *ngIf="!last">, </span>
-        </ng-container>
+        <strong>Robots:</strong>
+        <span *ngFor="let robot of planet.robots; let isLast=last">
+          {{ robot.name }}<span *ngIf="!isLast">, </span>
+        </span>
       </p>
-    </div> 
-    <button *ngIf="planet.status === 0" (click)="visitPlanet(planet)">
+    </div>
+    <!-- Toggle Edit Mode Button -->
+    <button *ngIf="planet.status === 0" (click)="toggleEditMode()">
       Visit Planet
     </button>
   </div>
+
+  <!-- Edit Form -->
+  <ng-container *ngIf="editMode">
+    <form [formGroup]="planetForm" (ngSubmit)="submitUpdate()">
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <input formControlName="description" id="description" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="status">Status:</label>
+        <select formControlName="status" id="status" class="form-control">
+          <option value="1">OK</option>
+          <option value="2">Not OK</option>
+        </select>
+      </div>
+      <div class="form-group" *ngIf="editMode">
+        <label for="humanCaptainName">Human Captain Name:</label>
+        <select formControlName="humanCaptainName" id="humanCaptainName" class="form-control">
+          <option *ngFor="let captain of humanCaptains" [value]="captain.name">
+            {{ captain.name }}
+          </option>
+        </select>
+      </div>
+
+      <div formArrayName="robots" class="form-group">
+        <label>Robots:</label>
+        <!-- Iterate over each FormGroup in the FormArray -->
+        <div *ngFor="let robotGroup of robots.controls; let i=index" [formGroupName]="i" class="input-group mb-2">
+          <!-- Replace the input with a select element -->
+          <select formControlName="name" class="form-control">
+            <option *ngFor="let robot of robotsDb" [value]="robot.name">{{ robot.name }}</option>
+          </select>
+          <div class="input-group-append">
+            <button type="button" class="btn btn-danger" (click)="removeRobot(i)">Remove</button>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="addRobot()">Add Robot</button>
+      </div>
+
+      <button type="submit" class="btn btn-success">Update Planet</button>
+      <button type="button" class="btn btn-secondary" (click)="toggleEditMode()">Cancel</button>
+    </form>
+  </ng-container>
 </div>
