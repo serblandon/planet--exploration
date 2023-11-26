@@ -20,8 +20,8 @@ export class GenericRestApi<T> {
       return this.http.post<T>(this.url, data);
     }
   
-    public update(data: T): Observable<T> {
-      return this.http.put<T>(this.url, data);
+    public update(data: T, id: number): Observable<T> {
+      return this.http.put<T>(`${this.url}/${id}`, data);
     }
 
     public deleteById(id: number): Observable<void> {
