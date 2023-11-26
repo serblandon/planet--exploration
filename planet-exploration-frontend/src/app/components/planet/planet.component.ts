@@ -132,7 +132,8 @@ export class PlanetComponent implements OnInit{
         this.planetService.update(updatedData, this.planet.id).subscribe({
           next: (response) => {
             console.log('Planet updated successfully:', response);
-            this.toggleEditMode(); // Optionally toggle edit mode off
+            this.toggleEditMode();
+            location.reload();
           },
           error: (error) => {
             console.error('Error updating planet:', error);
