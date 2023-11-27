@@ -82,27 +82,6 @@ export class PlanetComponent implements OnInit{
       this.robots.removeAt(index);
     }
 
-    // submitUpdate() {
-    //   if (this.planetForm.valid) {
-    //     const updatedPlanet: IPlanet = {
-    //       ...this.planet,
-    //       ...this.planetForm.value,
-    //       humanCaptain: { ...this.planet.humanCaptain, name: this.planetForm.value.humanCaptainName },
-    //       robots: this.planetForm.value.robots
-    //     };
-  
-    //     this.planetService.update(updatedPlanet, updatedPlanet.id).subscribe({
-    //       next: (response) => {
-    //         console.log('Planet updated successfully:', response);
-    //         this.toggleEditMode();
-    //       },
-    //       error: (error) => {
-    //         console.error('Error updating planet:', error);
-    //       }
-    //     });
-    //   }
-    // }
-
     submitUpdate() {
       if (this.planetForm.valid) {
         const formModel = this.planetForm.value;
