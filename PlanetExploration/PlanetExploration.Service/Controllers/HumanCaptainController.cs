@@ -57,16 +57,6 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         }
         #endregion
 
-#region Update
-        [HttpPut("{humanCaptainId:int}")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult> UpdateHumanCaptainAsync(int humanCaptainId, [FromBody] HumanCaptainDto humanCaptain)
-        {
-            await _mediator.Send(new UpdateHumanCaptainCommand() { Id = humanCaptainId, HumanCaptain = humanCaptain });
-            return Ok();
-        }
-#endregion
-
 #region Delete
         [HttpDelete("{humanCaptainId:int}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]

@@ -56,16 +56,6 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         }
         #endregion
 
-        #region Update
-        [HttpPut("{robotId:int}")]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult> UpdateRobotAsync(int robotId, [FromBody] RobotDto robot)
-        {
-            await _mediator.Send(new UpdateRobotCommand() { Id = robotId, Robot = robot });
-            return Ok();
-        }
-        #endregion
-
         #region Delete
         [HttpDelete("{robotId:int}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
