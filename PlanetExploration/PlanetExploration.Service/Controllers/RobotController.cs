@@ -4,7 +4,6 @@ using PlanetExploration.PlanetExploration.Core.DTOs.RobotDTOs;
 using PlanetExploration.PlanetExploration.Core.Models;
 using PlanetExploration.PlanetExploration.Logic.Robot.Commands.AddRobot;
 using PlanetExploration.PlanetExploration.Logic.Robot.Commands.DeleteRobot;
-using PlanetExploration.PlanetExploration.Logic.Robot.Commands.UpdateRobot;
 using PlanetExploration.PlanetExploration.Logic.Robot.Queries.GetAllRobots;
 using PlanetExploration.PlanetExploration.Logic.Robot.Queries.GetRobotsById;
 using System.Net;

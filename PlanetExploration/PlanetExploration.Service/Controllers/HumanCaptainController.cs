@@ -4,7 +4,6 @@ using PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs;
 using PlanetExploration.PlanetExploration.Core.Models;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.AddHumanCaptain;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.DeleteHumanCaptain;
-using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Commands.UpdateHumanCaptain;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries.GetAllHumanCaptains;
 using PlanetExploration.PlanetExploration.Logic.HumanCaptain.Queries.GetHumanCaptainsById;
 using System.Net;
