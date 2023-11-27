@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { IHumanCaptain } from 'src/app/interfaces/human-captain';
 import { IPlanet } from 'src/app/interfaces/planet';
 import { IRobot } from 'src/app/interfaces/robot';
@@ -27,7 +28,8 @@ export class PlanetComponent implements OnInit{
     private planetService: PlanetService,
     private humanCaptainService: HumanCaptainService,
     private robotService: RobotService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
     ) { }
 
     ngOnInit(): void {
@@ -41,7 +43,7 @@ export class PlanetComponent implements OnInit{
         description: [this.planet?.description ?? '', Validators.required],
         status: [this.planet?.status || '', Validators.required],
         humanCaptainName: [this.planet?.humanCaptain?.name || '', Validators.required],
-        robots: this.fb.array(this.planet?.robots?.map(robot => this.fb.group({ name: robot.name })) || [])
+        robots: this.fb.array(this.planet?.robots?.map(robot => this.fb.group({ name: [robot.name, Validators.required]})) || [])
       });
     }
 
@@ -83,7 +85,7 @@ export class PlanetComponent implements OnInit{
     }
 
     submitUpdate() {
-      if (this.planetForm.valid) {
+      if (this.planetForm.valid && this.robots.length > 0) {
         const formModel = this.planetForm.value;
 
         const selectedHumanCaptain = this.humanCaptains.find(
@@ -94,7 +96,7 @@ export class PlanetComponent implements OnInit{
           const foundRobot = this.robotsDb.find(robot => robot.name === formRobot.name);
           if (!foundRobot) {
             console.error(`No matching robot found for name: ${formRobot.name}`);
-            return null;  // or handle this case as you see fit
+            return null;
           }
           return foundRobot;
         }).filter((robot: IRobot | null) => robot !== null);
@@ -118,6 +120,9 @@ export class PlanetComponent implements OnInit{
             console.error('Error updating planet:', error);
           }
         });
+      }
+      else {
+        this.toastr.error('Please fill out all fields.', 'Form Incomplete');
       }
     }
     
