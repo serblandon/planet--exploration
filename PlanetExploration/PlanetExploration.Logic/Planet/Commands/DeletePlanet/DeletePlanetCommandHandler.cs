@@ -20,18 +20,6 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Commands.DeletePlanet
                 throw new ApiException($"Planet with id: {request.Id} not found!");
             }
 
-            var captains = _planetExplorationContext.HumanCaptains.Where(c => c.PlanetId == request.Id);
-            foreach (var captain in captains)
-            {
-                captain.PlanetId = null;
-            }
-
-            var robots = _planetExplorationContext.Robots.Where(c => c.PlanetId == request.Id);
-            foreach (var robot in robots)
-            {
-                robot.PlanetId = null;
-            }
-
             _planetExplorationContext.Remove(planet);
             await _planetExplorationContext.SaveChangesAsync(cancellationToken);
 

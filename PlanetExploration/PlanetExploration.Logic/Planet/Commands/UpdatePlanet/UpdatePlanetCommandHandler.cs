@@ -68,11 +68,8 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Commands.UpdatePlanet
                     planet.Description = request.Planet.Description;
                 }
 
-                foreach (var robot in robots)
-                {
-                    robot.PlanetId = planet.Id;
-                }
-                humanCaptain.PlanetId = planet.Id;
+                planet.HumanCaptain = humanCaptain;
+                planet.Robots = robots;
 
                 _planetExplorationContext.Planets.Update(planet);
                 await _planetExplorationContext.SaveChangesAsync(cancellationToken);

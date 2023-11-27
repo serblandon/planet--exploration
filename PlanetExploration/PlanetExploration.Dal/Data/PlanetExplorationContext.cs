@@ -29,14 +29,12 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
                 .IsUnique();
 
             modelBuilder.Entity<Robot>()
-                .HasOne<Planet>()
-                .WithMany(r => r.Robots)
-                .HasForeignKey(r => r.PlanetId);
+                .HasMany<Planet>()
+                .WithMany(r => r.Robots);
 
             modelBuilder.Entity<HumanCaptain>()
-                .HasOne<Planet>()
-                .WithOne(h => h.HumanCaptain)
-                .HasForeignKey<HumanCaptain>(h => h.PlanetId);
+                .HasMany<Planet>()
+                .WithOne(h => h.HumanCaptain);
 
             modelBuilder.Entity<Planet>()
                 .Property(p => p.Description)

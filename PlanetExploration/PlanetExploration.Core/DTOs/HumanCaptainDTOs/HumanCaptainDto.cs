@@ -5,14 +5,12 @@ namespace PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs
     public class HumanCaptainDto
     {
         public string Name { get; set; }
-        public int PlanetId { get; set; }
 
         public static implicit operator HumanCaptain(HumanCaptainDto entity)
         {
             return new()
             {
                 Name = entity.Name,
-                PlanetId = entity.PlanetId
             };
         }
     }
