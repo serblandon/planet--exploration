@@ -4,7 +4,7 @@
   </header>
   <div class="main-content">
     <div *ngFor="let planet of planets">
-      <app-planet [planet]="planet"></app-planet>
+      <app-planet [planet]="planet" (planetUpdated)="onPlanetUpdated()"></app-planet>
     </div>
     <ngx-spinner name="spinnerDetails" [fullScreen]="false" type="cog" size="medium"></ngx-spinner>
   </div>

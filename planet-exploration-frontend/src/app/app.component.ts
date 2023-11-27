@@ -19,6 +19,14 @@ export class AppComponent{
     ) {}
 
   ngOnInit(): void {
+    this.loadPlanets();
+  }
+
+  onPlanetUpdated() {
+    this.loadPlanets();
+  }
+
+  loadPlanets() {
     this.spinner.show("spinnerDetails");
     this.planetService.getAll()
     .pipe(

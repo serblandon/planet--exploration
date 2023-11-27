@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { IHumanCaptain } from 'src/app/interfaces/human-captain';
@@ -18,6 +18,8 @@ export class PlanetComponent implements OnInit{
   @Input()
   public planet!: IPlanet;
 
+  @Output() planetUpdated = new EventEmitter<void>();
+
   public humanCaptains: IHumanCaptain[] = [];
   public robotsDb: IRobot[] = [];
 
@@ -29,7 +31,7 @@ export class PlanetComponent implements OnInit{
     private humanCaptainService: HumanCaptainService,
     private robotService: RobotService,
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
     ) { }
 
     ngOnInit(): void {
@@ -114,10 +116,12 @@ export class PlanetComponent implements OnInit{
           next: (response) => {
             console.log('Planet updated successfully:', response);
             this.toggleEditMode();
-            location.reload();
+            this.planetUpdated.emit();
+            this.toastr.success('Planet has been successfully visited!', 'Success');
           },
           error: (error) => {
             console.error('Error updating planet:', error);
+            this.toastr.error('Wrong request to visit planet!', 'Error');
           }
         });
       }
