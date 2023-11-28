@@ -1,6 +1,4 @@
-﻿using PlanetExploration.PlanetExploration.Core.DTOs.HumanCaptainDTOs;
-
-namespace PlanetExploration.PlanetExploration.Core.Models
+﻿namespace PlanetExploration.PlanetExploration.Core.Models
 {
     public class Planet
     {

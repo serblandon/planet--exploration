@@ -27,7 +27,6 @@ namespace PlanetExploration.PlanetExploration.Service.Controllers
         {
             var response = await _mediator.Send(new GetAllHumanCaptainsQuery());
 
-            //var foundCustomers = _mapper.Map<List<CustomerGetDto>>(customers);
             return Ok(response);
         }
 
