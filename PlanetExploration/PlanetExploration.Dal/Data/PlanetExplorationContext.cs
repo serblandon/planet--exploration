@@ -28,6 +28,10 @@ namespace PlanetExploration.PlanetExploration.Dal.Data
                 .HasIndex(r => r.Name)
                 .IsUnique();
 
+            modelBuilder.Entity<Planet>()
+                .HasIndex(p => p.Name)
+                .IsUnique();
+
             modelBuilder.Entity<Robot>()
                 .HasMany<Planet>()
                 .WithMany(r => r.Robots);
