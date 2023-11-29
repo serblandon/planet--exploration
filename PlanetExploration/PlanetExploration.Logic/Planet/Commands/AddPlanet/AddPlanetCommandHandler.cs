@@ -20,6 +20,12 @@ namespace PlanetExploration.PlanetExploration.Logic.Planet.Commands.AddPlanet
                 throw new ApiException($"Planet with name {request.Planet.Name} already exists.");
             }
 
+            var imageAlreadyInDataBase = await _planetExplorationContext.Planets.FirstOrDefaultAsync(u => u.ImageUrl == request.Planet.ImageUrl, cancellationToken);
+            if (imageAlreadyInDataBase != null)
+            {
+                throw new ApiException($"Planet with this image already exists.");
+            }
+
             Core.Models.Planet entity = request.Planet;
 
             await _planetExplorationContext.Planets.AddAsync(entity, cancellationToken);

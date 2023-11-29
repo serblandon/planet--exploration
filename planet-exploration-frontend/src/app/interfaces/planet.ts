@@ -6,6 +6,7 @@ export interface IPlanet {
     name: string;
     description?: string;
     status: number;
+    imageUrl: string;
     humanCaptain: IHumanCaptain;
     robots: IRobot[];
 }
