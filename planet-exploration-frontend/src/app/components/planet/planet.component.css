@@ -3,12 +3,23 @@
     border-radius: 4px;
     padding: 16px;
     margin-bottom: 20px;
-  }
-  
-  .planet-header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .planet-middle {
+    flex-direction: column;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1px;
+  }
+
+  .planet-right {
+    display: flex;
     align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
   .planet-status {
@@ -16,6 +27,8 @@
     border-radius: 4px;
     color: white;
     font-weight: bold;
+    flex-shrink: 0;
+    align-self: center;
   }
   
   .OK {
@@ -36,9 +49,6 @@
   
   .planet-footer {
     margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
 
   .planet-footer button {
@@ -48,8 +58,22 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: auto;
   }
 
   .planet-footer button:hover {
     background-color: #4d0013; 
+  }
+
+  .planet-picture {
+    width: 80px;
+    height: 80px;
+  }
+
+  .planet-picture-container {
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }

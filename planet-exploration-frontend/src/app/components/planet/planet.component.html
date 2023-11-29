@@ -1,22 +1,17 @@
 <div class="planet-card" *ngIf="planet">
-  <!-- Planet Header -->
-  <div class="planet-header">
-    <h2>{{ planet.name }}</h2>
-    <span class="planet-status" 
-         [ngClass]="{
-           'OK': planet.status === 1, 
-           'NOTOK': planet.status === 2, 
-           'ENROUTE': planet.status === 0
-         }">
-      {{ planet.status === 1 ? 'OK' : (planet.status === 2 ? '!OK' : (planet.status === 0 ? 'EnRoute' : 'Unknown')) }}
-    </span>
+
+  <div class="planet-left">
+    <div class="planet-image-container">
+      <div class="planet-image">
+        <img [src]="planet.imageUrl" class="planet-picture" alt="{{planet.name}} image">
+      </div>
+    </div>
+    <h3>{{ planet.name }}</h3>
   </div>
 
-  <!-- Planet Description -->
-  <p class="planet-description" *ngIf="!editMode">{{ planet.description }}</p>
-
-  <!-- Entity Details -->
-  <div class="planet-footer" *ngIf="!editMode">
+  <div class="planet-middle">
+    <!-- Planet Description -->
+    <p class="planet-description" *ngIf="!editMode">{{ planet.description }}</p>
     <div class="entities">
       <p *ngIf="planet.humanCaptain && planet.humanCaptain.name">
         <strong>by captain:</strong> {{ planet.humanCaptain.name }}
@@ -28,10 +23,24 @@
         </span>
       </p>
     </div>
-    <!-- Toggle Edit Mode Button -->
-    <button *ngIf="planet.status === 0" (click)="toggleEditMode()">
-      Visit Planet
-    </button>
+  </div>
+
+  <div class="planet-right">
+    <span class="planet-status" 
+        [ngClass]="{
+          'OK': planet.status === 1, 
+          'NOTOK': planet.status === 2, 
+          'ENROUTE': planet.status === 0
+        }">
+    {{ planet.status === 1 ? 'OK' : (planet.status === 2 ? '!OK' : (planet.status === 0 ? 'EnRoute' : 'Unknown')) }}
+    </span>
+
+    <div class="planet-footer" *ngIf="!editMode">
+      <!-- Toggle Edit Mode Button -->
+      <button *ngIf="planet.status === 0" (click)="toggleEditMode()">
+        Visit Planet
+      </button>
+    </div>
   </div>
 
   <!-- Edit Form -->
